@@ -14,18 +14,19 @@ void setup() {
   stroke(255,0,0);
 }
 
-void draw() {
-  opencv.read();
-  image(opencv.image(), 0, 0);
-    
-  Rectangle[] faces = opencv.detect();
-    
-  for( int i=0; i<faces.length; i++ ) {
-    rect(faces[i].x, faces[i].y, faces[i].width, faces[i].height); 
-  }
+void blurRectangle(Rectangle rectangle) {
+  opencv.ROI(rectangle);
+  opencv.blur(OpenCV.BLUR, 13);
+  opencv.ROI(null);
 }
 
-/*
-  Rectangleは四角形を表すクラス
-  x座標, y座標, 幅(width)), 高さ(height)を持つ
- */
+void draw() {
+  opencv.read();
+  Rectangle[] faces = opencv.detect();
+
+  for( int i=0; i<faces.length; i++ ) {
+    blurRectangle(faces[i]);
+  }
+
+  image(opencv.image(), 0, 0);
+}

@@ -10,5 +10,5 @@ The OpenCV Processing Library is a project of the Atelier hypermédia at the Éc
 http://ipafont.ipa.go.jp/ipa_font_license_v1.html
 
 
-* haarcascade_frontalface_alt.xml
+* haarcascade_frontalface_alt.XML
 Created by Rainer Lienhart.
