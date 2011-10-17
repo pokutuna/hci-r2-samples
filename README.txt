@@ -8,3 +8,7 @@ The OpenCV Processing Library is a project of the Atelier hypermédia at the Éc
 * IPAedFont
 このリポジトリ内の一部のプログラムはIPAexFontを利用しています
 http://ipafont.ipa.go.jp/ipa_font_license_v1.html
+
+
+* haarcascade_frontalface_alt.xml
+Created by Rainer Lienhart.
