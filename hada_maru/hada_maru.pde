@@ -29,6 +29,7 @@ void draw() {
   img = opencv.image();
   image(img, 0, 0);
 
+  // たぶん超重い
   for(int w = 0; w < width; w += 10) {
     for(int h = 0; h < height; h += 10) {
       if(isSkin(get(w, h))) {
