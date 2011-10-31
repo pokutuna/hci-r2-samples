@@ -7,6 +7,7 @@ deleyed_frame - カメラからの画像を16個保存し並べて表示
 convert - OpenCVを利用したグレースケールへの変換
 background_diff - 背景差分
 namec_skin - ナメック星人化
+pimage_namec - PImageに入れた画像をいじってナメック化
 
 * 顔認識
 face_detection - OpenCVを利用した顔認識
@@ -19,6 +20,8 @@ image_type - SOURCE, BUFFER, MEMORY 等OpenCVの画像領域サンプル
 
 
 * メモ
+顔認識器XMLへのパスに日本語が入ってるとうまくいかない場合がある
+
 opencv.read(); カメラから読み込み
 opencv.image(); 読み込んだ内容をPImageで返す
 
