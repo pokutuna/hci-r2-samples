@@ -1,7 +1,3 @@
-/*
-  SingleARTKMarker class function test program
-*/
-
 import processing.core.*;
 import jp.nyatla.nyar4psg.*;
 import hypermedia.video.*;
