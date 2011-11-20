@@ -47,7 +47,7 @@ void draw() {
   PVector pos = rotateMathematically(new PVector(50, 0), PI - offset);
   translate(pos.x, pos.y, 0);
   fill(128, 255, 0, 128);
-  box(5);
+  box(10);
   popMatrix();
 
   // 三角関数で座標をゆらすサンプル
@@ -58,6 +58,9 @@ void draw() {
   sphere(10);
   popMatrix();
 
+  // Boxをたくさん回転させる、ある程度複雑なことをするならメソッドを分けるといい
+  drawRollingBoxes();
+
   artk.endTransform();
   offset += 0.05;
 }
@@ -67,4 +70,24 @@ PVector rotateMathematically(PVector pos, float radian) {
   destX = pos.x * cos(radian) - pos.y * sin(radian);
   destY = pos.x * sin(radian) - pos.y * cos(radian);
   return new PVector(destX, destY);
+}
+
+void drawRollingBoxes() {
+  colorMode(HSB, 100);
+  pushMatrix();
+  translate(50, 50, 0);
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      pushMatrix();
+      translate(10 * i, 10 * j, 10);
+      rotateX(PI + offset);
+      rotateY(PI - offset * 1.5);
+      rotateZ(PI * offset);
+      fill((i * 15 +  j * 5), 100, 100, 50);
+      box(5);
+      popMatrix();
+    }
+  }
+  popMatrix();
+  colorMode(RGB, 255);
 }
