@@ -1,4 +1,5 @@
 import processing.core.*;
+import processing.video.*;
 import jp.nyatla.nyar4psg.*;
 import hypermedia.video.*;
 
@@ -21,13 +22,12 @@ void setup() {
 
 void draw() {
   background(255);
-  opencv.read();
+  capture.read();
 
-  PImage img = opencv.image();
-  artk.drawBackground(img);
+  artk.drawBackground(capture);
 
   // マーカの状態を取得するサンプル
-  switch(artk.detect(img)){
+  switch(artk.detect(capture)){
   case SingleARTKMarker.ST_NOMARKER: // マーカがない
     return;
   case SingleARTKMarker.ST_NEWMARKER: // 新しくマーカが見つかった
