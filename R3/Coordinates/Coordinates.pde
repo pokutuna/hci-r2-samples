@@ -28,8 +28,13 @@ void draw() {
   artk.drawBackground(capture);
   artk.detect(capture);
 
+  // マーカ頂点の二次元座標(スクリーン上の座標)
   drawMarkerVertexes();
+
+  // スクリーン上の座標をマーカ座標系に変換
   drawScreenMousePosition();
+
+  // Box
   drawBox();
 }
 
@@ -37,7 +42,6 @@ void drawMarkerVertexes() {
   stroke(0);
   fill(255, 128, 0, 230);
 
-  // マーカ頂点の二次元座標を表示
   // ref: PVector http://processing.org/reference/PVector.html
   PVector[] vertexes = artk.getMarkerVertex2D();
   for (int i = 0; i < vertexes.length; i++) {
@@ -50,16 +54,13 @@ void drawScreenMousePosition() {
   stroke(0);
   fill(128, 255, 0, 230);
 
-  // スクリーン上の座標をマーカ座標系に変換
   // ref: screen2MarkerCoordSystem http://nyatla.jp/nyartoolkit/doc/nyar4psg/api/1.1.6/jp/nyatla/nyar4psg/SingleMarkerBaseClass.html#screen2MarkerCoordSystem(int, int)
   artk.beginTransform();
-
   pushMatrix();
   PVector position = artk.screen2MarkerCoordSystem(mouseX, mouseY);
   translate(position.x, position.y, 0);
   ellipse(0, 0, 10, 10);
   popMatrix();
-
   artk.endTransform();
 
   text("(" + position.x + ", " + position.y + ")", mouseX, mouseY);
@@ -68,6 +69,7 @@ void drawScreenMousePosition() {
 void drawBox() {
   stroke(255,255,0);
   fill(100, 150, 250, 128);
+
   artk.beginTransform();
   translate(0, 0, 20);
   box(40);
