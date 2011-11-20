@@ -1,32 +1,32 @@
 import processing.core.*;
+import processing.video.*;
 import jp.nyatla.nyar4psg.*;
-import hypermedia.video.*;
 
 PFont font;
-OpenCV opencv;
-SingleARTKMarker nya;
+Capture capture;
+SingleARTKMarker artk;
+int c = 0;
 
 void setup() {
   size(640, 480, P3D);
-  colorMode(RGB, 100);
-  font = createFont("FFScala", 32);
-  opencv = new OpenCV(this);
-  opencv.capture(width, height);
-  nya = new SingleARTKMarker(this, width, height, "camera_para.dat");
-  nya.setARCodes("patt.hiro", 80);
-}
+  colorMode(RGB, 255);
 
-int c = 0;
+  font = createFont("FFScala", 32);
+
+  capture = new Capture(this, width, height, 30);
+
+  artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
+  artk.setARCodes("patt.hiro", 80);
+}
 
 void draw() {
   c++;
   background(255);
-  opencv.read();
+  capture.read();
 
-  PImage img = opencv.image();
-  nya.drawBackground(img);
+  artk.drawBackground(capture);
 
-  switch(nya.detect(img)){
+  switch(artk.detect(capture)){
   case SingleARTKMarker.ST_NOMARKER:
     return;
   case SingleARTKMarker.ST_NEWMARKER:
@@ -41,45 +41,40 @@ void draw() {
     return;
   }
 
-  nya.beginTransform();//マーカ座標系に設定
-  {
-    setMatrix(nya.getMarkerMatrix());//マーカ姿勢をセット
-    drawBox();
-    drawMarkerXYPos();
-  }
-  nya.endTransform();  //マーカ座標系を終了
+  artk.beginTransform();//マーカ座標系に設定
+  setMatrix(artk.getMarkerMatrix());//マーカ姿勢をセット
+  drawBox();
+  drawMarkerXYPos();
+  artk.endTransform();  //マーカ座標系を終了
+
   drawMarkerPatt();
   drawVertex();
-  
 }
 
-void drawBox()
-{
+void drawBox() {
   pushMatrix();
 
-  fill(0);
-  stroke(255,200,0);
-  translate(0,0,20);
+  fill(255, 0, 128, 128);
+  stroke(255, 200, 0);
+  translate(0, 0, 20);
   box(40);
   noFill();
-  translate(0,0,-20);
-  rect(-40,-40,80,80); 
+  translate(0, 0, -20);
+  rect(-40, -40, 80, 80);
 
   popMatrix();
 }
 
 //この関数は、マーカパターンを描画します。
-void drawMarkerPatt()
-{
-  PImage p = nya.pickupMarkerImage(40, 40, -40, 40, -40, -40, 40, -40, 100, 100);
+void drawMarkerPatt() {
+  PImage p = artk.pickupMarkerImage(40, 40, -40, 40, -40, -40, 40, -40, 100, 100);
   image(p, 0, 0);
 }
 
 //この関数は、マーカ平面上の点を描画します。
-void drawMarkerXYPos()
-{
+void drawMarkerXYPos() {
   pushMatrix();
-  PVector pos = nya.screen2MarkerCoordSystem(mouseX, mouseY);
+  PVector pos = artk.screen2MarkerCoordSystem(mouseX, mouseY);
   translate(pos.x, pos.y, 0);
   noFill();
   stroke(0, 0, 100);
@@ -88,12 +83,11 @@ void drawMarkerXYPos()
 }
 
 //この関数は、マーカ頂点の情報を描画します。
-void drawVertex()
-{
-  PVector[] i_v = nya.getMarkerVertex2D();
+void drawVertex() {
+  PVector[] i_v = artk.getMarkerVertex2D();
   textFont(font, 10.0);
   stroke(100, 0, 0);
-  for(int i=0; i<4; i++){
+  for(int i = 0; i < 4; i++){
     fill(100, 0, 0);
     ellipse(i_v[i].x, i_v[i].y, 6, 6);
     fill(0, 0, 0);
