@@ -58,9 +58,15 @@ void draw() {
 
   pushMatrix();
   fill(0, 128, 255);
-  translate(160, 0, 20);
+  translate(0, 80, 20);
   // drawMyShapeで図形を描画、図形は頂点を組み合わせて作ることができる
   drawMyShape(50);
+  popMatrix();
+
+  pushMatrix();
+  fill(0, 255, 128);
+  translate(0, -80, 20);
+  drawScrappedShape(50, 50);
   popMatrix();
 
   artk.endTransform();
@@ -101,5 +107,17 @@ void drawMyShape(float edge) {
   }
   endShape();
 
+  popMatrix();
+}
+
+void drawScrappedShape(float edge, int vertexSize) {
+  pushMatrix();
+  beginShape(TRIANGLE_STRIP);
+  vertex(0, 0, 0);
+  for(int i = 0; i < vertexSize; i++) {
+    vertex(random(-edge / 2, edge / 2), random(-edge / 2, edge / 2), random(-edge / 2, edge / 2));
+  }
+  vertex(0, 0, 0);
+  endShape();
   popMatrix();
 }
