@@ -4,7 +4,6 @@ import jp.nyatla.nyar4psg.*;
 
 Capture capture;
 SingleARTKMarker artk;
-float offset = 0.0;
 
 void setup() {
   size(640, 480, P3D);
