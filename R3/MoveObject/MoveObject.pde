@@ -1,36 +1,39 @@
 import processing.core.*;
 import jp.nyatla.nyar4psg.*;
-import hypermedia.video.*;
+import processing.video.*;
 
 PFont font;
-OpenCV opencv;
-SingleARTKMarker nya;
+Capture capture;
+SingleARTKMarker artk;
 int objPosX, objPosY, objPosZ;
 int speed = 5;
 
 void setup() {
   size(640, 480, P3D);
-  colorMode(RGB, 100);
-  font = createFont("FFScala", 32);
-  opencv = new OpenCV(this);
-  opencv.capture(width, height);
-  nya = new SingleARTKMarker(this, width, height, "camera_para.dat");
-  nya.setARCodes("patt.hiro", 80);
+  colorMode(RGB, 255);
+  stroke(0);
+  fill(255, 0, 128, 128);
+
+  capture = new Capture(this, width ,height, 30);
+
+  artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
+  artk.setARCodes("patt.hiro", 80);
 }
 
+void captureEvent(Capture myCapture) {
+  myCapture.read();
+}
 
 void draw() {
   background(255);
-  opencv.read();
 
-  PImage img = opencv.image();
-  nya.drawBackground(img);
-  nya.detect(img);
+  artk.drawBackground(capture);
+  artk.detect(capture);
 
-  nya.beginTransform();
+  artk.beginTransform();
   translate(objPosX, objPosY, 20);
   box(40);
-  nya.endTransform();
+  artk.endTransform();
 }
 
 void keyPressed() {
