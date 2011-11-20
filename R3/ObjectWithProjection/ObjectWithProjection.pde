@@ -2,7 +2,7 @@ import processing.core.*;
 import processing.video.*;
 import jp.nyatla.nyar4psg.*;
 
-Capture capture;
+CaptureDS capture;
 SingleARTKMarker artk;
 ArrayList<PMatrix3D> projectionList;
 ArrayList<Float> diffList;
@@ -12,7 +12,7 @@ void setup() {
   noStroke();
   colorMode(RGB);
 
-  capture = new Capture(this, width, height, 30);
+  capture = new CaptureDS(this, width, height, 30);
 
   artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
   artk.setARCodes("patt.hiro", 80);
@@ -22,7 +22,7 @@ void setup() {
   diffList = new ArrayList<Float>();
 }
 
-void captureEvent(Capture myCapture) {
+void captureEvent(CaptureDS myCapture) {
   myCapture.read();
 }
 

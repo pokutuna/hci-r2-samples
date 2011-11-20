@@ -3,7 +3,7 @@ import jp.nyatla.nyar4psg.*;
 import processing.video.*;
 
 PFont font;
-Capture capture;
+CaptureDS capture;
 SingleARTKMarker artk;
 int objPosX, objPosY, objPosZ;
 int speed = 5;
@@ -14,13 +14,13 @@ void setup() {
   stroke(0);
   fill(255, 0, 128, 128);
 
-  capture = new Capture(this, width ,height, 30);
+  capture = new CaptureDS(this, width ,height, 30);
 
   artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
   artk.setARCodes("patt.hiro", 80);
 }
 
-void captureEvent(Capture myCapture) {
+void captureEvent(CaptureDS myCapture) {
   myCapture.read();
 }
 

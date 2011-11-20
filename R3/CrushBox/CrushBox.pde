@@ -2,7 +2,7 @@ import processing.core.*;
 import processing.video.*;
 import jp.nyatla.nyar4psg.*;
 
-Capture capture;
+CaptureDS capture;
 SingleARTKMarker artk;
 
 int status;
@@ -17,14 +17,14 @@ void setup() {
   stroke(128);
   colorMode(HSB, 100);
 
-  capture = new Capture(this, width ,height, 30);
+  capture = new CaptureDS(this, width ,height, 30);
 
   artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
   artk.setARCodes("patt.hiro", 80);
   artk.setARPerspective();
 }
 
-void captureEvent(Capture myCapture) {
+void captureEvent(CaptureDS myCapture) {
   myCapture.read();
 }
 

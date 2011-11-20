@@ -2,7 +2,7 @@ import processing.core.*;
 import processing.video.*;
 import jp.nyatla.nyar4psg.*;
 
-Capture capture;
+CaptureDS capture;
 MultiMarker artk; // MultiMarkerクラスを使う
 
 void setup() {
@@ -10,7 +10,7 @@ void setup() {
   stroke(128);
   colorMode(RGB);
 
-  capture = new Capture(this, width, height, 30);
+  capture = new CaptureDS(this, width, height, 30);
 
   artk = new MultiMarker(this, width, height, "camera_para.dat");
   // マーカを追加した順にidが振られる
@@ -18,7 +18,7 @@ void setup() {
   artk.addARMarker("patt.kanji", 80); // id = 1
 }
 
-void captureEvent(Capture myCapture) {
+void captureEvent(CaptureDS myCapture) {
   myCapture.read();
 }
 

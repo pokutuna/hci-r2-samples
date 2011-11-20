@@ -2,7 +2,7 @@ import processing.core.*;
 import processing.video.*;
 import jp.nyatla.nyar4psg.*;
 
-Capture capture;
+CaptureDS capture;
 SingleARTKMarker artk;
 
 void setup() {
@@ -11,13 +11,13 @@ void setup() {
   noStroke();
   fill(100, 150, 250, 128);
 
-  capture = new Capture(this, width ,height, 30);
+  capture = new CaptureDS(this, width ,height, 30);
 
   artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
   artk.setARCodes("patt.hiro", 80);
 }
 
-void captureEvent(Capture myCapture) {
+void captureEvent(CaptureDS myCapture) {
   myCapture.read();
 }
 

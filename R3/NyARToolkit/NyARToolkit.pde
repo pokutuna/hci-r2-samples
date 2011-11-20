@@ -3,7 +3,7 @@ import processing.video.*;
 import jp.nyatla.nyar4psg.*;
 
 PFont font;
-Capture capture;
+CaptureDS capture;
 SingleARTKMarker artk;
 int c = 0;
 
@@ -13,7 +13,7 @@ void setup() {
 
   font = createFont("FFScala", 32);
 
-  capture = new Capture(this, width, height, 30);
+  capture = new CaptureDS(this, width, height, 30);
 
   artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
   artk.setARCodes("patt.hiro", 80);

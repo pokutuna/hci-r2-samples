@@ -5,7 +5,7 @@ import jp.nyatla.nyar4psg.*;
 import jp.nyatla.kGLModel.*;
 import jp.nyatla.kGLModel.contentprovider.*;
 
-Capture capture;
+CaptureDS capture;
 SingleARTKMarker artk;
 KGLModelData model;
 ContentProvider content;
@@ -14,7 +14,7 @@ void setup() {
   size(640, 480, OPENGL);
   hint(ENABLE_OPENGL_4X_SMOOTH);
 
-  capture = new Capture(this, width, height, 30);
+  capture = new CaptureDS(this, width, height, 30);
 
   artk = new SingleARTKMarker(this, width, height, "camera_para.dat");
   artk.setARCodes("patt.hiro", 80);
@@ -28,7 +28,7 @@ void setup() {
   pgl.endGL();
 }
 
-void captureEvent(Capture myCapture) {
+void captureEvent(CaptureDS myCapture) {
   myCapture.read();
 }
 
