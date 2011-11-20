@@ -41,8 +41,8 @@ setMatrixメソッドに行列を渡すことで、変換行列を適用でき�
 以前のマーカ位置に図形描画するなどが可能になる。
 
 - LoadMQO: メタセコイアモデルのロード&描画
+(!!!重要!!!) 絶対パスを直接入力せず、dataPath(モデル名.mqo)を利用すること
 メタセコイアモデルの描画にはOpenGLを用いる。
-(重要) 絶対パスを直接入力せず、dataPath(モデル名.mqo)を利用すること
 OpenGLではglRotatef(degree, x, y, z)でx,y,zベクトルを軸にdegree度回転することができる。
 メソッド等だいたい共通のはず ref: http://www.komoto.org/opengl/#Use
 
