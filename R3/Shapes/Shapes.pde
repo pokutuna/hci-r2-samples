@@ -38,7 +38,7 @@ void draw() {
   pushMatrix();
   fill(255, 128, 0, 128);
   translate(0, 0, 20);
-  // 100角錐、ほぼ円柱
+  // 100角柱、ほぼ円柱
   cylinder(100, 50, 20, 20);
   popMatrix();
 
