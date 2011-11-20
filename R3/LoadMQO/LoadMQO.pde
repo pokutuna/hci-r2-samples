@@ -41,6 +41,7 @@ void draw() {
   artk.beginTransform(pgl);
   GL gl = pgl.beginGL();
 
+  // glRotatef(degree, x, y, z) -> x,y,zベクトルを軸にdegree度回転
   gl.glRotatef(-90, 1, 0, 0);
   model.enables(10);
   model.draw();
