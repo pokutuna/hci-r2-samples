@@ -10,9 +10,9 @@ void setup() {
   stroke(128);
   colorMode(RGB);
 
-  capture = new Capture(this, width ,height, 30);
-  artk = new MultiMarker(this, width, height, "camera_para.dat");
+  capture = new Capture(this, width, height, 30);
 
+  artk = new MultiMarker(this, width, height, "camera_para.dat");
   // マーカを追加した順にidが振られる
   artk.addARMarker("patt.hiro", 80); // id = 0
   artk.addARMarker("patt.kanji", 80); // id = 1
