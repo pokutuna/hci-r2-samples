@@ -1,0 +1,9 @@
+# Created by Metasequoia
+
+newmtl jeep
+Ka 0.70000 0.70000 0.70000
+Kd 0.70000 0.70000 0.70000
+Ks 0.10000 0.10000 0.10000
+Ns 10.00000
+map_Kd jeep.png
+
